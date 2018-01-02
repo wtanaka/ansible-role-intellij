@@ -22,8 +22,8 @@
           (apt-get install -y python-pycurl ||
              (apt-get update -qq && apt-get install -y python-pycurl)));
     fi
-  register: result_python_curl
-  until: result_python_curl|success
+  register: result_python_pycurl
+  until: result_python_pycurl|success
   when: should_run and ansible_os_family == 'Debian'
   changed_when: False
 
