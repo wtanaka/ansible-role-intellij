@@ -1,0 +1,29 @@
+---
+- name: Check if intellij is installed
+  command: grep {{intellij_build}} {{intellij_install_dir}}/build.txt
+  register: install
+  failed_when: False
+  changed_when: False
+
+- name: Download IntelliJ archive
+  command: wget -q -O {{intellij_local_package_location}} {{intellij_url}}
+  args:
+    creates: "{{intellij_local_package_location}}"
+  when: install.stdout.find(intellij_build) == -1
+
+- name: Uncompress IntelliJ
+  command: rm -rf {{intellij_install_dir}}
+  when: install.stdout.find(intellij_build) == -1
+
+- name: Make unpack directory
+  file:
+    path: "{{intellij_install_dir}}"
+    state: directory
+  when: install.stdout.find(intellij_build) == -1
+
+- name: Uncompress IntelliJ
+  command: tar xvfoz {{intellij_local_package_location}} --strip-components 1
+  when: install.stdout.find(intellij_build) == -1
+  args:
+    chdir: "{{intellij_install_dir}}"
+
