@@ -1,7 +1,7 @@
 ---
-intellij_build: "IC-191.6707.61"
+intellij_build: "IC-191.7141.44"
 intellij_local_package_location: "/tmp/intellij_download-{{intellij_build}}.tar.gz"
 intellij_include_jdk: True
 intellij_install_dir: "/opt/intellij"
-intellij_version: "2019.1.1"
+intellij_version: "2019.1.2"
 intellij_url: "https://download.jetbrains.com/idea/ideaIC-{{intellij_version}}{%if intellij_include_jdk%}-no-jbr{%endif%}.tar.gz"
