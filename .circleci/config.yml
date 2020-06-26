@@ -112,6 +112,16 @@ jobs:
     - run: sudo apt-get install -y docker.io
     - run: wget -qO- bit.ly/ansibletest | env ANSIBLE_VERSIONS=2.5.1 DOCKER_IMAGES=ubuntu:16.04
         sh
+  ANSIBLE_VERSIONS=2.6.5 DOCKER_IMAGES=ubuntu:16.04:
+    machine: true
+    steps:
+    - checkout
+    - run: sudo apt-get update -qq
+    - run: sudo apt-get install -y wget make ruby-bundler python-virtualenv
+    - run: sudo apt-get install -y python-dev libffi-dev libssl-dev
+    - run: sudo apt-get install -y docker.io
+    - run: wget -qO- bit.ly/ansibletest | env ANSIBLE_VERSIONS=2.6.5 DOCKER_IMAGES=ubuntu:16.04
+        sh
   ANSIBLE_VERSIONS=1.4 DOCKER_IMAGES=ubuntu:18.04:
     machine: true
     steps:
@@ -222,6 +232,16 @@ jobs:
     - run: sudo apt-get install -y docker.io
     - run: wget -qO- bit.ly/ansibletest | env ANSIBLE_VERSIONS=2.5.1 DOCKER_IMAGES=ubuntu:18.04
         sh
+  ANSIBLE_VERSIONS=2.6.5 DOCKER_IMAGES=ubuntu:18.04:
+    machine: true
+    steps:
+    - checkout
+    - run: sudo apt-get update -qq
+    - run: sudo apt-get install -y wget make ruby-bundler python-virtualenv
+    - run: sudo apt-get install -y python-dev libffi-dev libssl-dev
+    - run: sudo apt-get install -y docker.io
+    - run: wget -qO- bit.ly/ansibletest | env ANSIBLE_VERSIONS=2.6.5 DOCKER_IMAGES=ubuntu:18.04
+        sh
 workflows:
   version: 2
   test:
@@ -237,6 +257,7 @@ workflows:
     - ANSIBLE_VERSIONS=2.1.0.0 DOCKER_IMAGES=ubuntu:16.04
     - ANSIBLE_VERSIONS=2.2.1.0 DOCKER_IMAGES=ubuntu:16.04
     - ANSIBLE_VERSIONS=2.5.1 DOCKER_IMAGES=ubuntu:16.04
+    - ANSIBLE_VERSIONS=2.6.5 DOCKER_IMAGES=ubuntu:16.04
     - ANSIBLE_VERSIONS=1.4 DOCKER_IMAGES=ubuntu:18.04
     - ANSIBLE_VERSIONS=1.4.4 DOCKER_IMAGES=ubuntu:18.04
     - ANSIBLE_VERSIONS=1.5.4 DOCKER_IMAGES=ubuntu:18.04
@@ -248,3 +269,4 @@ workflows:
     - ANSIBLE_VERSIONS=2.1.0.0 DOCKER_IMAGES=ubuntu:18.04
     - ANSIBLE_VERSIONS=2.2.1.0 DOCKER_IMAGES=ubuntu:18.04
     - ANSIBLE_VERSIONS=2.5.1 DOCKER_IMAGES=ubuntu:18.04
+    - ANSIBLE_VERSIONS=2.6.5 DOCKER_IMAGES=ubuntu:18.04
